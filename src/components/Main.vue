@@ -18,7 +18,6 @@
             {{fbInfo.location}}
             <br>
           </h2>
-          <!-- <img v-src="photo["1"]"> -->
         </div> 
       </div>
       <img class="icon settings" src="../assets/icons/cogs.svg" v-on:click="toggle('edit')">
@@ -60,7 +59,9 @@
               fontImport,
               importFont,
               fonts,
-              displayNote
+              displayNote,
+              fbImages,
+              images
             }"
           />
         </transition>
@@ -78,7 +79,6 @@
           {{fbInfo.title1_description}}
         </h2>
 
-      <img style="width:200px" id="marin"/>
       <projects/>
 
       <contact 
@@ -125,12 +125,12 @@ import VueFire from 'vuefire'
 import VueResource from 'vue-resource'
 
 let config = {
-  apiKey: 'AIzaSyBfo5yIc3yb6GoSY6U0jQvXhb0ryLeGfEU',
-  authDomain: 'forkicks-1.firebaseapp.com',
-  databaseURL: 'https://forkicks-1.firebaseio.com',
-  projectId: 'forkicks-1',
-  storageBucket: 'forkicks-1.appspot.com',
-  messagingSenderId: '329999762015'
+  apiKey: 'AIzaSyCuvCKY3Q2LRN0-9B-ZicYEjAcvP5jFY-w',
+  authDomain: 'qwill-7f640.firebaseapp.com',
+  databaseURL: 'https://qwill-7f640.firebaseio.com',
+  projectId: 'qwill-7f640',
+  storageBucket: 'qwill-7f640.appspot.com',
+  messagingSenderId: '484437909074'
 }
 
 Vue.use(VueFire)
@@ -178,7 +178,9 @@ export default {
       fontStyle: '',
       fontSort: '',
       fontData: '',
-      displayNote: ''
+      displayNote: '',
+      images: [],
+      headerImage: ''
     }
   },
   firebase: {
@@ -186,8 +188,8 @@ export default {
       source: db.ref('info'),
       asObject: true
     },
-    photo: {
-      source: db.ref('photos'),
+    fbImages: {
+      source: db.ref('images'),
       asObject: true
     },
     k: {
@@ -213,8 +215,6 @@ export default {
     },
     fetchData: function () {
       let self = this
-      // let sort = this.fontSort
-      // let key = self.fbInfo.font
       let url = `https://www.googleapis.com/webfonts/v1/webfonts?sort=trending&fields=items%2Ffamily&key=AIzaSyBfo5yIc3yb6GoSY6U0jQvXhb0ryLeGfEU`
       fetch(url)
         .then((resp) => resp.json())

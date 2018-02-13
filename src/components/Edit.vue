@@ -147,9 +147,13 @@
         </div>
       </span>
       <transition name="fade">
-      <div v-if="image">
-        <button>upload</button>
-      </div>
+        <imagepicker
+          v-bind="{
+            fbImages,
+            image,
+            images
+          }"
+        />
       </transition>
     </div>
   <!-- COLORS -->
@@ -354,7 +358,9 @@
         'importFont',
         'fonts',
         'displayNote',
-        'fontSort'
+        'fontSort',
+        'fbImages',
+        'images'
       ],
       data: function () {
         return {
