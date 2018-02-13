@@ -420,11 +420,13 @@
     align-items: center;
     cursor: pointer;
     img{
+      filter:invert(1);
       width:30px;
       margin:2px;
       height:auto;
-      background:rgba(255,255,255,0.8);
+      // background:rgba(0,0,0,0.1);
       border-radius: 5px;
+      border: solid 2px rgba(0,0,0,0.1);
     }
   }
   .category-close{

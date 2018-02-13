@@ -155,7 +155,7 @@
         font-size:20px;
       }
       .item-title{
-        font-size:42px;
+        padding: 20px;
       }
     }
     img{
