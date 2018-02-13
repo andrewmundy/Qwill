@@ -21,70 +21,109 @@
           <!-- <transition name="fade"> -->
             <div class="panel-contents" v-if="passport">
               <div>
-                <div>Header Name</div>
+                <div>Event Title</div>
                 <input 
-                  id="name" 
-                  v-model="fbInfo.name" 
-                  v-on="childName = fbInfo.name" 
+                  id="Event_Title" 
+                  v-model="account.public.events[21208].eventTitle" 
+                  v-on="childName = account.public.events[21208].eventTitle" 
                   placeholder="Name"
                 >
               </div>
               <div>
-                <div>Header Description</div>
+                <div>Event SubTitle</div>
                 <input 
-                  id="description" 
-                  v-model="fbInfo.name_description" 
-                  v-on="childName_description = fbInfo.name_description" 
+                  id="Event_SubTitle" 
+                  v-model="account.public.events[21208].eventSubTitle" 
+                  v-on="childName = account.public.events[21208].eventSubTitle" 
+                  placeholder="Name"
+                >
+              </div>
+              <div>
+                <div>First Title</div>
+                <input 
+                  id="1_Title" 
+                  v-model="account.public.events[21208].items[1].title" 
+                  v-on="childName = account.public.events[21208].items[1].title" 
+                  placeholder="Name"
+                >
+              </div>
+              <div>
+                <div>First Description</div>
+                <input 
+                  id="1_Description" 
+                  v-model="account.public.events[21208].items[1].description" 
+                  v-on="childName_description = account.public.events[21208].items[1].description" 
                   placeholder="Description"
                 >
               </div>
+              <div>Glasswear</div>
+              <div class="glass-choose">
+                <img v-on:click="pickGlass('1', 'cocktail')" :src="account.images.cocktail">
+                <img v-on:click="pickGlass('1', 'rocks')" :src="account.images.rocks">
+                <img v-on:click="pickGlass('1', 'collins')"  :src="account.images.collins">
+              </div>
+
+                <p></p>
+
               <div>
-                <div>Location</div>
+                <div>Second Title</div>
                 <input 
-                  id="location" 
-                  v-model="fbInfo.location" 
-                  v-on="location = fbInfo.location" 
-                  placeholder="location"
-                >
-                <div>First Title</div>
-                <input 
-                  id="title1" 
-                  v-model="fbInfo.title1" 
-                  v-on="title1 = fbInfo.title1" 
-                  placeholder="Title 1"
+                  id="2_Title" 
+                  v-model="account.public.events[21208].items[2].title" 
+                  v-on="childName = account.public.events[21208].items[2].title" 
+                  placeholder="Name"
                 >
               </div>
               <div>
-              <div>First Description</div>
-              <input 
-                id="title1_description" 
-                v-model="fbInfo.title1_description" 
-                v-on="title1_description = fbInfo.title1_description" 
-                placeholder="Description"
-              >
-              <div>Contact Header</div>
-              <input 
-                id="contact" 
-                v-model="fbInfo.contact" 
-                v-on="contact = fbInfo.contact" 
-                placeholder="contact"
-              >
-            </div>
-            <div>
-              <div>Contact Description</div>
-              <input 
-                id="contact_description" 
-                v-model="fbInfo.contact_description" 
-                v-on="contact_description = fbInfo.contact_description" 
-                placeholder="Contact Description"
-              >
-            </div>
+                <div>Second Description</div>
+                <input 
+                  id="2_Description" 
+                  v-model="account.public.events[21208].items[2].description" 
+                  v-on="childName_description = account.public.events[21208].items[2].description" 
+                  placeholder="Description"
+                >
+              </div>
+              <div>Glasswear</div>
+              <div class="glass-choose">
+                <img v-on:click="pickGlass('2', 'cocktail')" :src="account.images.cocktail">
+                <img v-on:click="pickGlass('2', 'rocks')" :src="account.images.rocks">
+                <img v-on:click="pickGlass('2', 'collins')"  :src="account.images.collins">
+              </div>
+
+                <p></p>
+
+              <div>
+                <div>Third Title</div>
+                <input 
+                  id="3_Title" 
+                  v-model="account.public.events[21208].items[3].title" 
+                  v-on="childName = account.public.events[21208].items[3].title" 
+                  placeholder="Name"
+                >
+              </div>
+              <div>
+                <div>Third Description</div>
+                <input 
+                  id="3_Description" 
+                  v-model="account.public.events[21208].items[3].description" 
+                  v-on="childName_description = account.public.events[21208].items[3].description" 
+                  placeholder="Description"
+                >
+              </div>
+              <div>Glasswear</div>
+              <div class="glass-choose">
+                <img v-on:click="pickGlass('3', 'cocktail')" :src="account.images.cocktail">
+                <img v-on:click="pickGlass('3', 'rocks')" :src="account.images.rocks">
+                <img v-on:click="pickGlass('3', 'collins')"  :src="account.images.collins">
+              </div>
+
+              
           </div>
         <!-- </transition> -->
       </div>
 
     <!-- SOCIALS -->
-    <div class="panel">
+    <!-- <div class="panel">
         <span class="categories" v-on:click="toggle('social')">
           <img alt="close" class="icon" src="../assets/icons/social.svg">
           <div v-if="social">
@@ -134,9 +173,9 @@
           </div>
         </div>
       </transition>
-    </div>
+    </div> -->
   <!-- IMAGE -->
-    <div class="panel">
+    <!-- <div class="panel">
       <span class="categories" v-on:click="toggle('image')">
         <img alt="close" class="icon" src="../assets/icons/camera.svg">
         <div v-if="image">
@@ -155,7 +194,7 @@
           }"
         />
       </transition>
-    </div>
+    </div> -->
   <!-- COLORS -->
     <div class="panel">
       <span class="categories" v-on:click="toggle('color')">
@@ -170,73 +209,43 @@
       <transition name="fade">
         <div class="panel-contents" v-if="color">
           <div class="panel-category">
-            <span>Header Color</span>
+            <span>Title Color</span>
             <colorpicker 
               class="stylepicker"
-              colorInstance="headerColor"
+              colorInstance="titleColor"
               v-bind="{
                 colorWindow,
                 toggle,
-                fbInfo
+                fbInfo,
+                titleColor,
+                account
               }"
             />
             <input 
-              id="header-color" 
-              v-model="fbInfo.headerColor" 
-              v-on="headerColor = fbInfo.headerColor"
-              value="headerColor"
+              id="title-color" 
+              v-model="account.public.events[21208].titleColor" 
+              v-on="titleColor = account.public.events[21208].titleColor"
+              value="titleColor"
             >
           </div>
 
           <div class="panel-category">
-            <span>Header SubColor</span>
+            <span>Description Color</span>
             <colorpicker 
               class="stylepicker"
-              colorInstance="headerSubColor"
+              colorInstance="descriptionColor"
               v-bind="{
                 colorWindow,
                 toggle,
-                fbInfo
+                fbInfo,
+                account,
+                descriptionColor
               }"
             />
             <input 
-              id="header-subColor" 
-              v-model="fbInfo.headerSubColor" 
-              v-on="headerSubColor = fbInfo.headerSubColor" 
-              placeholder=""
-            >
-          </div>
-
-          <div class="panel-category">
-            <span class="category-close">
-              Header Shadow 
-              <img alt="clear" title="clear" src="../assets/icons/exit.svg" class="icon" v-on:click="combineShadow('none')">
-            </span>
-            <div class="px">
-              <span>x <input v-model="x"></span>
-              <span>y <input v-model="y"></span>
-              <span>blur <input v-model="blur"></span>
-              {{combineShadow()}}
-            </div>
-          </div>
-
-          <div class="panel-category">
-            <span class="category-close">
-              Font Color
-            </span>
-            <colorpicker 
-              class="stylepicker"
-              colorInstance="fontColor"
-              v-bind="{
-                colorWindow,
-                toggle,
-                fbInfo
-              }"
-            />
-            <input 
-              id="font-color" 
-              v-model="fbInfo.fontColor" 
-              v-on="fontColor = fbInfo.fontColor" 
+              id="description-color" 
+              v-model="account.public.events[21208].descriptionColor" 
+              v-on="headerSubColor = account.public.events[21208].descriptionColor" 
               placeholder=""
             >
           </div>
@@ -247,7 +256,7 @@
             </span>
             <fontpicker 
               class="stylepicker"
-              fontInstance="fontStyle"
+              fontInstance="titleFont"
               v-bind="{
                 colorWindow,
                 toggle,
@@ -255,14 +264,16 @@
                 fontImport,
                 importFont,
                 fonts,
-                fontSort
+                fontSort,
+                account,
+                titleFont
               }"
             />
             <input 
               style="visibility:hidden;"
               id="font-style" 
-              v-model="fbInfo.fontStyle" 
-              v-on="fontStyle = fbInfo.fontStyle" 
+              v-model="account.public.events[21208].titleFont" 
+              v-on="fontStyle = account.public.events[21208].titleFont" 
               placeholder=""
             >
           </div>
@@ -295,12 +306,20 @@
           'contact_description',
           'banner',
           'location',
-          'headerColor',
-          'headerSubColor',
-          'shadow',
           'fontColor',
           'fontStyle',
-          'fontImport'
+          'fontImport',
+          'images',
+          'account',
+          'descriptionFont',
+          'descriptionSize',
+          'titleFont',
+          'titleSize',
+          'titleColor',
+          'descriptionColor',
+          'glass1',
+          'glass2',
+          'glass3'
         )"
       >
       <img
@@ -332,35 +351,34 @@
     export default {
       name: 'edit',
       props: [
-        'fbInfo',
         'toggle',
+        'fbInfo',
         'isLogged',
         'isLoggedIn',
         'changeProp',
-        'name',
-        'name_description',
         'contact',
         'contact_description',
-        'title1',
-        'title1_description',
         'id',
         'social',
         'passport',
         'image',
         'color',
-        'headerColor',
-        'headerSubcolor',
-        'colorWindow',
-        'shadow',
-        'fontColor',
-        'fontStyle',
         'fontImport',
         'importFont',
         'fonts',
         'displayNote',
         'fontSort',
-        'fbImages',
-        'images'
+        'images',
+        'account',
+        'descriptionFont',
+        'descriptionSize',
+        'titleFont',
+        'titleSize',
+        'titleColor',
+        'descriptionColor',
+        'glass1',
+        'glass2',
+        'glass3'
       ],
       data: function () {
         return {
@@ -374,6 +392,9 @@
         }
       },
       methods: {
+        pickGlass (item, glass) {
+          this.account.public.events[21208].items[item].photo = this.account.images[glass]
+        },
         signOut (props) {
           let self = this
           firebase.auth().signOut().then(function () {
@@ -386,27 +407,26 @@
             console.log(error)
           })
         },
-        pickColor: function (color) {
-          this.fbInfo.headerColor = color
-        },
-        combineShadow (x) {
-          if (x) {
-            this.x = 0
-            this.y = 0
-            this.blur = 0
-            this.fbInfo.shadow = '0 0 0'
-          }
-          let localShadow = `${this.x}px ${this.y}px ${this.blur}px`
-          this.fbInfo.shadow = localShadow
-        },
         mounted: function () {
-          console.log(this.passport)
         }
       }
     }
 </script>
 
 <style lang="scss">
+  .glass-choose{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    img{
+      width:30px;
+      margin:2px;
+      height:auto;
+      background:rgba(255,255,255,0.8);
+      border-radius: 5px;
+    }
+  }
   .category-close{
     display: flex;
     justify-content: space-between;

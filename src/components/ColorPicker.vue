@@ -61,7 +61,10 @@
       'colorInstance',
       'shadow',
       'fontColor',
-      'fontStyle'
+      'fontStyle',
+      'account',
+      'titleColor',
+      'descriptionColor'
     ],
     data () {
       return {
@@ -74,8 +77,7 @@
     methods: {
       pickColor: function (rule, color) {
         let colorRule = rule
-        this.fbInfo[colorRule] = color
-        // return {'v-style': color}
+        this.account.public.events[21208][colorRule] = color
         console.log(rule, color)
       },
       mounted: function () {

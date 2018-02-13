@@ -1,25 +1,61 @@
 <template>
     <div class="main-view">
       <span v-html="importFont()"></span>
-      <div class="header">
-        <div 
-          v-bind:style="renderStyle(
-            {'background':'headerColor'},
-            {'box-shadow':'headerSubColor'},
-            {'font-family':'fontStyle'}
-          )" 
-          class="title hidden hidden-left" 
-          v-fbInfocus="'showElement'"
-        >
-          <span class="name" v-bind:style="renderStyle({'color':'fontColor'})">{{fbInfo.name}}</span>
-          <h2 class="headline" v-bind:style="renderStyle({'color':'fontColor'})">
-            {{fbInfo.name_description}}
-            <br>
-            {{fbInfo.location}}
-            <br>
-          </h2>
-        </div> 
+  <!-- HEADER -->
+      <div class="heading">
+        <div :style="renderStyle(
+          {'font-size':'eventTitleSize'}
+          )">
+          <h1>{{account.public.events[21208].eventTitle}}</h1>
+            
+          <h2><i>{{account.public.events[21208].eventSubTitle}}</i></h2>
+        </div>
       </div>
+  <!-- ITEM1 -->
+      <div class="items">
+        <div class="item">
+          <img :src="account.public.events[21208].items[1].photo">
+          <div class="item-title" :style="renderStyle(
+            {'font-size':'titleSize'},
+            {'font-family':'titleFont'},
+            {'color':'titleColor'})"
+          >{{account.public.events[21208].items[1].title}}</div>
+          <div class="item-description" :style="renderStyle(
+            {'font-size':'descriptionSize'},
+            {'font-family':'descriptionFont'},
+            {'color':'descriptionColor'})"
+          >{{account.public.events[21208].items[1].description}}</div>
+        </div>
+  <!-- ITEM2 -->
+        <div class="item">
+          <img :src="account.public.events[21208].items[2].photo">
+          <div class="item-title" :style="renderStyle(
+            {'font-size':'titleSize'},
+            {'font-family':'titleFont'},
+            {'color':'titleColor'})"
+          >{{account.public.events[21208].items[2].title}}</div>
+          <div class="item-description" :style="renderStyle(
+            {'font-size':'descriptionSize'},
+            {'font-family':'descriptionFont'},
+            {'color':'descriptionColor'})"
+          >{{account.public.events[21208].items[2].description}}</div>
+        </div>
+  <!-- ITEM3 -->
+        <div class="item">
+          <img :src="account.public.events[21208].items[3].photo">
+          <div class="item-title" :style="renderStyle(
+            {'font-size':'titleSize'},
+            {'font-family':'titleFont'},
+            {'color':'titleColor'})"
+          >{{account.public.events[21208].items[3].title}}</div>
+          <div class="item-description" :style="renderStyle(
+            {'font-size':'descriptionSize'},
+            {'font-family':'descriptionFont'},
+            {'color':'descriptionColor'})"
+          >{{account.public.events[21208].items[3].description}}</div>
+        </div>
+      </div>
+
       <img class="icon settings" src="../assets/icons/cogs.svg" v-on:click="toggle('edit')">
       <div class="admin_panel">
         <transition name="slide-fade">
@@ -61,7 +97,17 @@
               fonts,
               displayNote,
               fbImages,
-              images
+              images,
+              account,
+              descriptionFont,
+              descriptionSize,
+              titleFont,
+              titleSize,
+              titleColor,
+              descriptionColor,
+              glass1,
+              glass2,
+              glass3
             }"
           />
         </transition>
@@ -69,7 +115,7 @@
 
 
 
-      <div class="spacer"></div>
+      <!-- <div class="spacer"></div>
       
       <img class="hidden hidden-right squiggle" v-fbInfocus="'showElement-slow'" src="../assets/squiggle.svg">
         <h1 class="genre-titles">
@@ -77,11 +123,10 @@
         </h1>
         <h2 class="genre-quote hidden hidden-left" v-fbInfocus="'showElement'">
           {{fbInfo.title1_description}}
-        </h2>
+        </h2> -->
 
-      <projects/>
-
-      <contact 
+      <!-- <projects/> -->
+      <!-- <contact 
         v-bind="{
           contact, 
           contact_description, 
@@ -90,11 +135,34 @@
           edit,
           toggle
           }" 
-        />
+        /> -->
     </div>
 </template>
 
-<style>
+<style lang="scss">
+  .heading{
+    padding:2rem;
+  }
+  .items{
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    .item{
+      padding:1rem 5rem;
+      .item-description{
+        font-size:20px;
+      }
+      .item-title{
+        font-size:42px;
+      }
+    }
+    img{
+      width:100px;
+      height: auto;
+    }
+  }
   button{
     background: rgba(0, 0, 0, 0.253);
     color: #ffffff4d;
@@ -180,27 +248,22 @@ export default {
       fontData: '',
       displayNote: '',
       images: [],
-      headerImage: ''
+      headerImage: '',
+      glass1: '',
+      glass2: '',
+      glass3: ''
     }
   },
   firebase: {
-    fbInfo: {
-      source: db.ref('info'),
-      asObject: true
-    },
-    fbImages: {
-      source: db.ref('images'),
-      asObject: true
-    },
-    k: {
-      source: db.ref('k'),
+    account: {
+      source: db.ref('accounts'),
       asObject: true
     }
   },
   created: function () {
   },
   mounted: function () {
-    this.fetchData()
+    this.fetchFont()
     this.isLogged()
   },
   methods: {
@@ -213,7 +276,7 @@ export default {
         console.log('cleared')
       }, 1000)
     },
-    fetchData: function () {
+    fetchFont: function () {
       let self = this
       let url = `https://www.googleapis.com/webfonts/v1/webfonts?sort=trending&fields=items%2Ffamily&key=AIzaSyBfo5yIc3yb6GoSY6U0jQvXhb0ryLeGfEU`
       fetch(url)
@@ -224,19 +287,17 @@ export default {
           items.slice(0, size).map(function (font) {
             self.fonts.push(font.family)
           })
-          console.log(self.fonts)
         })
         .catch(function (err) {
           console.log(err)
         })
     },
-
     importFont () {
       let self = this
-      let imported = self.fbInfo.fontImport
+      let imported = self.account.public.events[21208].fontImport
       if (imported) {
         let url = `<style> @import url('//fonts.googleapis.com/css?family=${imported}')</style>`
-        self.fbInfo.fontStyle = self.fbInfo.fontImport
+        self.account.public.events[21208].fontStyle = self.account.public.events[21208].fontImport
         return url
       }
     },
@@ -246,17 +307,13 @@ export default {
       args.map(function (arg) {
         let key = Object.keys(arg)[0]
         let value = Object.values(arg)[0]
-        if (key === 'box-shadow') {
-          style[key] = `${self.fbInfo.shadow} ${self.fbInfo[value]}`
-        } else {
-          style[key] = self.fbInfo[value]
-        }
+        style[key] = self.account.public.events['21208'][value]
       })
       return style
     },
     isLogged () {
       let self = this
-      if (!self.fbInfo.requireAuth) {
+      if (!self.account.public.events[21208].requireAuth) {
         this.isLoggedIn = true
       } else if (firebase.auth().currentUser) {
         this.isLoggedIn = true
@@ -275,15 +332,15 @@ export default {
       let notes = ''
       if (!this.requireAuth) {
         args.map(function (arg) {
-          updates[arg] = self.fbInfo[arg]
+          updates[arg] = self.account.public.events[21208][arg]
           notes = 'cool!'
         })
         db.ref('info').update(updates)
-        console.log(updates)
+        // console.log(updates)
       } else if (this.requireAuth) {
         if (firebase.auth().currentUser) {
           args.map(function (arg) {
-            updates[arg] = self.fbInfo[arg]
+            updates[arg] = self.account.public.events[21208][arg]
           })
           db.ref('fbInfo').update(updates)
           console.log(updates)

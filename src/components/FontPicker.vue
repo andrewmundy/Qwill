@@ -22,10 +22,10 @@
         Import Google Font
         <i style="font-size:0.5rem;">or <a href="https://fonts.google.com/">find</a> a Google Font and type it below</i>
         <input 
-          v-model="fbInfo.fontImport"
-          v-on="fontImport = fbInfo.fontImport"
+          v-model="account.public.events[21208].fontImport"
+          v-on="fontImport = account.public.events[21208].fontImport"
         >
-        <button class="" @click="pickFont(fontInstance, fbInfo.fontImport)">import</button>
+        <button class="" @click="pickFont(fontInstance, account.public.events[21208].fontImport)">import</button>
       </div>
     </div>
 </template>
@@ -103,7 +103,9 @@
       'fontImport',
       'importFont',
       'fonts',
-      'fontSort'
+      'fontSort',
+      'account',
+      'titleFont'
     ],
     data () {
       return {
@@ -120,27 +122,16 @@
       append (parent, el) {
         return parent.appendChild(el)
       },
-      throwFonts () {
-        // let ul = document.getElementById('fonts')
-        // let self = this
-        // this.fonts.map(function (font) {
-        //   let li = self.createNode('li')
-        //   li.innerHTML = font
-        //   self.append(ul, li)
-        // })
-        // console.log(this.fonts, this.$refs['fonts'])
-      },
       pickFont: function (rule, fontFamily) {
         let fontFamilyRule = rule
         let parsedFont = fontFamily.replace(/\b[a-z]/g, function (f) {
           return f.toUpperCase().split(' ').join('+')
         })
-        this.fbInfo[fontFamilyRule] = parsedFont
-        this.fbInfo.fontImport = fontFamily
+        this.account.public.events[21208][fontFamilyRule] = parsedFont
+        this.account.public.events[21208].fontImport = fontFamily
       }
     },
     mounted: function () {
-      // this.throwFonts()
     }
   }
 </script>

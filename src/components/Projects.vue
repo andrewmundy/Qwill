@@ -2,8 +2,6 @@
 <div class="section">
     <div class="projects">
         <div class="project hidden hidden-up" v-infocus="'showElement'">
-            <a target="_blank" href="../assets/projects/bella1.jpg">
-            <img src="../assets/projects/bella1.jpg">
             <div class="text">
                 <h1>Project1</h1>
                 <h2>Project1-Subtext</h2>

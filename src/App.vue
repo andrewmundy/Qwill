@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view v-bind="{
+      toggle,
+    }"/>
   </div>
 </template>
 
@@ -17,17 +19,13 @@ export default {
 <style lang="scss">
   @import './assets/main.scss';
    #app {
+    //  background:black;
      font-family: $sans-serif;
      -webkit-font-smoothing: antialiased;
      -moz-osx-font-smoothing: grayscale;
      text-align: center;
-    //  color: #2c3e50;
      padding: 0px;
-     background: url("./assets/projects/bella2.jpg") center center no-repeat;
-     height: 100vh;
-     background-size: cover;
-    //  width: 100vw;
-    // overflow-x: hidden;
-    //  overflow: hidden;
+    //  height: 100vh;
+    //  background-size: cover;
  }
 </style>
