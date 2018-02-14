@@ -38,6 +38,33 @@
                   placeholder="Name"
                 >
               </div>
+              <div>
+                <div>Event Size</div>
+                <input 
+                  id="Size" 
+                  v-model="account.public.events[21208].eventTitleSize" 
+                  v-on="childName = account.public.events[21208].eventTitleSize" 
+                  placeholder="Name"
+                >
+              </div>
+              <div>
+                <div>Title Size</div>
+                <input 
+                  id="Size" 
+                  v-model="account.public.events[21208].titleSize" 
+                  v-on="childName = account.public.events[21208].titleSize" 
+                  placeholder="Name"
+                >
+              </div>
+              <div>
+                <div>Description Size</div>
+                <input 
+                  id="Size" 
+                  v-model="account.public.events[21208].descriptionSize" 
+                  v-on="childName = account.public.events[21208].descriptionSize" 
+                  placeholder="Name"
+                >
+              </div>
                 <p></p>
               <div>
                 <div>First Title</div>
@@ -251,6 +278,27 @@
               v-model="account.public.events[21208].descriptionColor" 
               v-on="headerSubColor = account.public.events[21208].descriptionColor" 
               placeholder=""
+            >
+          </div>
+
+          <div class="panel-category">
+            <span>Background Color</span>
+            <colorpicker 
+              class="stylepicker"
+              colorInstance="backgroundColor"
+              v-bind="{
+                colorWindow,
+                toggle,
+                fbInfo,
+                titleColor,
+                account
+              }"
+            />
+            <input 
+              id="backgroundColor" 
+              v-model="account.public.events[21208].backgroundColor" 
+              v-on="backgroundColor = account.public.events[21208].backgroundColor"
+              value="backgroundColor"
             >
           </div>
         <!-- FONTS -->
@@ -568,6 +616,7 @@
             font-size: 0.7rem;
           }
           .panel{
+            border-radius: 2px;
             padding:10px 3px;
           }
         }

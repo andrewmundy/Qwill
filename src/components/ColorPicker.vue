@@ -6,6 +6,7 @@
         <div v-on:click="pickColor(colorInstance, '#F5508C')" style="background:#F5508C"></div>
         <div v-on:click="pickColor(colorInstance, '#FFC145')" style="background:#FFBC42"></div>
         <div v-on:click="pickColor(colorInstance, '#FFF600')" style="background:#FFF600"></div>
+        <div v-on:click="pickColor(colorInstance, '#FFFEE8')" style="background:#FFFEE8"></div>
         <div v-on:click="pickColor(colorInstance, '#B8E986')" style="background:#B8E986"></div>
         <div v-on:click="pickColor(colorInstance, '#08A045')" style="background:#7ED321"></div>
         <div v-on:click="pickColor(colorInstance, '#218380')" style="background:#50E393"></div>
@@ -17,7 +18,10 @@
         <div v-on:click="pickColor(colorInstance, '#BD10E0')" style="background:#BD10E0"></div>
         <div v-on:click="pickColor(colorInstance, '#000000')" style="background:#000000"></div>
         <div v-on:click="pickColor(colorInstance, '#4A4A4A')" style="background:#4A4A4A"></div>
+        <div v-on:click="pickColor(colorInstance, '#898B8B')" style="background:#898B8B"></div>
         <div v-on:click="pickColor(colorInstance, '#9B9B9B')" style="background:#9B9B9B"></div>
+        <div v-on:click="pickColor(colorInstance, '#BEBFC1')" style="background:#BEBFC1"></div>
+        <div v-on:click="pickColor(colorInstance, '#E6E4E8')" style="background:#E6E4E8"></div>
         <div v-on:click="pickColor(colorInstance, '#FFFFFF')" style="background:#FFFFFF"></div>
         <div v-on:click="pickColor(colorInstance, 'none')" style="box-shadow: inset 0 0 0 1px white;"></div>
       </div>

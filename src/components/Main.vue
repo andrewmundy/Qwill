@@ -1,14 +1,16 @@
 <template>
-    <div class="main-view">
+    <div class="main-view" :style="renderStyle({'background':'backgroundColor'})">
       <span v-html="importFont()"></span>
   <!-- HEADER -->
       <div class="heading">
         <div :style="renderStyle(
-          {'font-size':'eventTitleSize'}
+          {'font-size':'eventTitleSize'},
+          {'font-family':'titleFont'},
+          {'color':'titleColor'}
           )">
-          <h1>{{account.public.events[21208].eventTitle}}</h1>
+          <h3>{{account.public.events[21208].eventTitle}}</h3>
             
-          <h2><i>{{account.public.events[21208].eventSubTitle}}</i></h2>
+          <h4 style="opacity:0.5;"><i>{{account.public.events[21208].eventSubTitle}}</i></h4>
         </div>
       </div>
   <!-- ITEM1 -->
@@ -278,11 +280,11 @@ export default {
     },
     fetchFont: function () {
       let self = this
-      let url = `https://www.googleapis.com/webfonts/v1/webfonts?sort=trending&fields=items%2Ffamily&key=AIzaSyBfo5yIc3yb6GoSY6U0jQvXhb0ryLeGfEU`
+      let url = `https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&fields=items%2Ffamily&key=AIzaSyBfo5yIc3yb6GoSY6U0jQvXhb0ryLeGfEU`
       fetch(url)
         .then((resp) => resp.json())
         .then(function (data) {
-          let size = 10
+          let size = 5
           let items = data.items
           items.slice(0, size).map(function (font) {
             self.fonts.push(font.family)

@@ -10,9 +10,6 @@
         <li @click="pickFont(fontInstance, 'fantasy')">Papyrus(dont)</li>
 
         <i style="font-size:0.5rem;">Choose a Google Font</i>
-        <button @click="whichFontSort('date')">Most Recent</button>
-        <button @click="whichFontSort('trending')">Trending</button>
-        <button @click="whichFontSort('popularity')">Popular</button>
         <li v-for="font in fonts" @click="pickFont(fontInstance, font)">
           {{font}}
         </li>
