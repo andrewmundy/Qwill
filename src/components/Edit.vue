@@ -38,6 +38,7 @@
                   placeholder="Name"
                 >
               </div>
+                <p></p>
               <div>
                 <div>First Title</div>
                 <input 
@@ -56,11 +57,13 @@
                   placeholder="Description"
                 >
               </div>
-              <div>Glasswear</div>
-              <div class="glass-choose">
-                <img v-on:click="pickGlass('1', 'cocktail')" :src="account.images.cocktail">
-                <img v-on:click="pickGlass('1', 'rocks')" :src="account.images.rocks">
-                <img v-on:click="pickGlass('1', 'collins')"  :src="account.images.collins">
+              <div>
+                <div>Glasswear</div>
+                <div class="glass-choose">
+                  <img v-on:click="pickGlass('1', 'cocktail')" :src="account.images.cocktail">
+                  <img v-on:click="pickGlass('1', 'rocks')" :src="account.images.rocks">
+                  <img v-on:click="pickGlass('1', 'collins')"  :src="account.images.collins">
+                </div>
               </div>
 
                 <p></p>
@@ -83,11 +86,13 @@
                   placeholder="Description"
                 >
               </div>
-              <div>Glasswear</div>
-              <div class="glass-choose">
-                <img v-on:click="pickGlass('2', 'cocktail')" :src="account.images.cocktail">
-                <img v-on:click="pickGlass('2', 'rocks')" :src="account.images.rocks">
-                <img v-on:click="pickGlass('2', 'collins')"  :src="account.images.collins">
+              <div>
+                <div>Glasswear</div>
+                <div class="glass-choose">
+                  <img v-on:click="pickGlass('2', 'cocktail')" :src="account.images.cocktail">
+                  <img v-on:click="pickGlass('2', 'rocks')" :src="account.images.rocks">
+                  <img v-on:click="pickGlass('2', 'collins')"  :src="account.images.collins">
+                </div>
               </div>
 
                 <p></p>
@@ -110,16 +115,15 @@
                   placeholder="Description"
                 >
               </div>
-              <div>Glasswear</div>
-              <div class="glass-choose">
-                <img v-on:click="pickGlass('3', 'cocktail')" :src="account.images.cocktail">
-                <img v-on:click="pickGlass('3', 'rocks')" :src="account.images.rocks">
-                <img v-on:click="pickGlass('3', 'collins')"  :src="account.images.collins">
-              </div>
-
-              
+              <div>
+                <div>Glasswear</div>
+                <div class="glass-choose">
+                  <img v-on:click="pickGlass('3', 'cocktail')" :src="account.images.cocktail">
+                  <img v-on:click="pickGlass('3', 'rocks')" :src="account.images.rocks">
+                  <img v-on:click="pickGlass('3', 'collins')"  :src="account.images.collins">
+                </div>
+              </div>  
           </div>
-        <!-- </transition> -->
       </div>
 
     <!-- SOCIALS -->
@@ -545,6 +549,11 @@
     }
   }
   @media screen and (max-device-width: 1024px) {
+      .glass-choose{
+        img{
+          width:20px;
+        }
+      }
       .admin_panel{
         margin: auto;
         input{
@@ -559,7 +568,14 @@
             font-size: 0.7rem;
           }
           .panel{
-            padding:6px;
+            padding:10px 3px;
+          }
+        }
+      }
+      .panel-contents{
+        div{
+          div{
+            font-size:10px;
           }
         }
       }
