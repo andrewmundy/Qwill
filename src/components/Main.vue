@@ -300,7 +300,7 @@
   and (max-device-width : 667px)  {
     .menu-frame{
       width:90%;
-      height: 70%;
+      height: 80%;
     }
     .bottom-text{
       width:90%;
@@ -310,9 +310,10 @@
     }
       .items{
         .item{
-          padding:20px 0px;
+          padding:10px 0px;
           input{
             margin:auto;
+            width:300px;
           }
         img{
           width:40px;
@@ -321,7 +322,11 @@
           font-size:20px !important;
         }
         .item-description{
-          font-size:14px !important;
+          textarea{
+            font-size:12px !important;
+            width:300px !important;
+
+          }
           // transform:scale(0.6);
         }
       }
@@ -374,7 +379,7 @@ export default {
       instagram: '',
       twitter: '',
       facebook: '',
-      passport: false,
+      passport: true,
       fbInfo: false,
       social: false,
       image: false,
