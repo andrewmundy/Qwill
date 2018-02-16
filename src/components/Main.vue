@@ -220,6 +220,10 @@
     resize: none ;
   }
 }
+    input:disabled, textarea:disabled{
+      -webkit-text-fill-color:inherit;
+      opacity: 1;
+    }
   .bottom-text{
     background:rgb(48, 105, 230);
     border:solid rgb(48, 105, 230) 10px;
@@ -241,10 +245,11 @@
   }
   .main-view{
     display:flex;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     height: 100vh;
     flex-direction: column;
+    padding-top: 40px;
   }
   .heading{
     padding:2rem;
@@ -300,7 +305,7 @@
   and (max-device-width : 667px)  {
     .menu-frame{
       width:90%;
-      height: 80%;
+      height: 70%;
     }
     .bottom-text{
       width:90%;
