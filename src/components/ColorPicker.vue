@@ -68,7 +68,8 @@
       'fontStyle',
       'account',
       'titleColor',
-      'descriptionColor'
+      'descriptionColor',
+      'borderColor'
     ],
     data () {
       return {
@@ -82,7 +83,7 @@
       pickColor: function (rule, color) {
         let colorRule = rule
         this.account.public.events[21208][colorRule] = color
-        console.log(rule, color)
+        // console.log(rule, color)
       },
       mounted: function () {
       }

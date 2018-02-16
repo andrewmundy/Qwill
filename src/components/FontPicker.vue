@@ -3,11 +3,13 @@
       <div class="font-window">
         <ul id="fonts">
         <i style="font-size:0.5rem;">Here are some popular fonts.</i>
-        <li @click="pickFont(fontInstance, 'roboto')">Roboto</li>
-        <li @click="pickFont(fontInstance, 'arial')">Arial</li>
-        <li @click="pickFont(fontInstance, 'georgia')">Gerogia</li>
-        <li @click="pickFont(fontInstance, 'impact')">Impact</li>
-        <li @click="pickFont(fontInstance, 'fantasy')">Papyrus(dont)</li>
+        <li @click="pickFont(fontInstance, 'Roboto')">Roboto</li>
+        <li @click="pickFont(fontInstance, 'Yellowtail')">Yellow Tail</li>
+        <li @click="pickFont(fontInstance, 'Lobster')">Lobster</li>
+        <li @click="pickFont(fontInstance, 'Impact')">Impact</li>
+        <li @click="pickFont(fontInstance, 'Quicksand')">Quicksand</li>
+        <li @click="pickFont(fontInstance, 'Merriweather')">Merriweather</li>
+        <li @click="pickFont(fontInstance, 'Fantasy')">Papyrus(dont)</li>
 
         <i style="font-size:0.5rem;">Choose a Google Font</i>
         <li v-for="font in fonts" @click="pickFont(fontInstance, font)">
@@ -71,8 +73,6 @@
     }
     @media screen and (max-device-width: 1024px) {
       .stylepicker{
-        width:100px;
-        font-size: 0.6rem;
         .font-window{
           width:auto;
           // padding:5px;

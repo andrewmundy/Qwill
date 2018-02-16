@@ -1,7 +1,6 @@
 <template>
     <div class="admin">
       {{isLogged()}}
-      {{banner}}
       <div class="edit-control">
         <img v-show="isLoggedIn" title="logout" alt="logout" src="../assets/icons/power-off.svg" class="icon" v-on:click="signOut(), toggle('login_closed')">
         <img v-on:click="toggle('edit')" title="close-edit" alt="close-edit" class="icon" src="../assets/icons/close-out.svg">
@@ -30,27 +29,9 @@
                 >
               </div>
               <div>
-                <div>Event SubTitle</div>
-                <input 
-                  id="Event_SubTitle" 
-                  v-model="account.public.events[21208].eventSubTitle" 
-                  v-on="childName = account.public.events[21208].eventSubTitle" 
-                  placeholder="Name"
-                >
-              </div>
-              <div>
-                <div>Event Size</div>
-                <input 
-                  id="Size" 
-                  v-model="account.public.events[21208].eventTitleSize" 
-                  v-on="childName = account.public.events[21208].eventTitleSize" 
-                  placeholder="Name"
-                >
-              </div>
-              <div>
                 <div>Title Size</div>
                 <input 
-                  id="Size" 
+                  id="titleSize" 
                   v-model="account.public.events[21208].titleSize" 
                   v-on="childName = account.public.events[21208].titleSize" 
                   placeholder="Name"
@@ -59,7 +40,7 @@
               <div>
                 <div>Description Size</div>
                 <input 
-                  id="Size" 
+                  id="descriptionSize" 
                   v-model="account.public.events[21208].descriptionSize" 
                   v-on="childName = account.public.events[21208].descriptionSize" 
                   placeholder="Name"
@@ -85,7 +66,7 @@
                 >
               </div>
               <div>
-                <div>Glasswear</div>
+                <div>Glassware</div>
                 <div class="glass-choose">
                   <img v-on:click="pickGlass('1', 'cocktail')" :src="account.images.cocktail">
                   <img v-on:click="pickGlass('1', 'rocks')" :src="account.images.rocks">
@@ -114,7 +95,7 @@
                 >
               </div>
               <div>
-                <div>Glasswear</div>
+                <div>Glassware</div>
                 <div class="glass-choose">
                   <img v-on:click="pickGlass('2', 'cocktail')" :src="account.images.cocktail">
                   <img v-on:click="pickGlass('2', 'rocks')" :src="account.images.rocks">
@@ -143,7 +124,7 @@
                 >
               </div>
               <div>
-                <div>Glasswear</div>
+                <div>Glassware</div>
                 <div class="glass-choose">
                   <img v-on:click="pickGlass('3', 'cocktail')" :src="account.images.cocktail">
                   <img v-on:click="pickGlass('3', 'rocks')" :src="account.images.rocks">
@@ -301,6 +282,27 @@
               value="backgroundColor"
             >
           </div>
+
+          <div class="panel-category">
+            <span>Border Color</span>
+            <colorpicker 
+              class="stylepicker"
+              colorInstance="borderColor"
+              v-bind="{
+                colorWindow,
+                toggle,
+                fbInfo,
+                borderColor,
+                account
+              }"
+            />
+            <input 
+              id="borderColor" 
+              v-model="account.public.events[21208].borderColor" 
+              v-on="borderColor = account.public.events[21208].borderColor"
+              value="borderColor"
+            >
+          </div>
         <!-- FONTS -->
           <div class="panel-category">
             <span class="category-close">
@@ -371,7 +373,8 @@
           'descriptionColor',
           'glass1',
           'glass2',
-          'glass3'
+          'glass3',
+          'borderColor'
         )"
       >
       <img
@@ -430,7 +433,9 @@
         'descriptionColor',
         'glass1',
         'glass2',
-        'glass3'
+        'glass3',
+        'borderColor',
+        'edit'
       ],
       data: function () {
         return {
@@ -458,8 +463,6 @@
           }, function (error) {
             console.log(error)
           })
-        },
-        mounted: function () {
         }
       }
     }
@@ -581,6 +584,8 @@
             flex-wrap:wrap;
             .stylepicker{
               padding:5px 0px;
+              // width:100px;
+              font-size: 0.6rem;
             }
             margin:10px 0px;
             span{
@@ -596,7 +601,55 @@
       }
     }
   }
-  @media screen and (max-device-width: 1024px) {
+// IPADMINI
+  @media only screen 
+    and (min-device-width : 768px) 
+    and (max-device-width : 1024px) 
+    and (orientation : portrait)
+    and (-webkit-min-device-pixel-ratio: 1)  {
+      .admin{
+        width:180px;
+        min-width: 100px;
+        padding:5px;
+        span{
+          font-size: 0.7rem;
+        }
+        .panel{
+          border-radius: 2px;
+          padding:10px 3px;
+          .categories{
+            padding: 0px 5px;
+          }
+          .panel-contents{
+            div{
+              div{
+                font-size:10px;
+              }
+            }
+            .panel-category{
+              span{
+                font-size: 0.7rem;
+              }
+              .stylepicker{
+                width:160px;
+                .font-window{
+                  #fonts{
+                    width: 100%;
+                  }
+                }
+                .color-window, .font-window{
+                  width: auto;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+// IPHONE
+  @media screen and (min-device-width : 375px) 
+and (max-device-width : 667px)  {
       .glass-choose{
         img{
           width:20px;
@@ -605,32 +658,50 @@
       .admin_panel{
         margin: auto;
         input{
-          width:80px;
-          font-size:0.6rem;
+          width:160px;
+          font-size:0.8rem;
         }
         .admin{
           width:100px;
           min-width: 100px;
           padding:5px;
           span{
-            font-size: 0.7rem;
+            font-size: 0.5rem;
           }
           .panel{
             border-radius: 2px;
             padding:10px 3px;
+            .categories{
+              padding: 0px 5px;
+            }
+            .panel-contents{
+              input{
+              width:85px;
+              font-size:0.5rem;
+              }
+              div{
+                div{
+                  font-size:10px;
+                }
+              }
+              .panel-category{
+                span{
+                  font-size: 0.7rem;
+                }
+                .stylepicker{
+                  width:90px;
+                  .font-window{
+                    #fonts{
+                      width: 100%;
+                    }
+                  }
+                  .color-window, .font-window{
+                    width: auto;
+                  }
+                }
+              }
+            }
           }
-        }
-      }
-      .panel-contents{
-        div{
-          div{
-            font-size:10px;
-          }
-        }
-      }
-      .panel-category{
-        span{
-          font-size: 0.7rem;
         }
       }
     }

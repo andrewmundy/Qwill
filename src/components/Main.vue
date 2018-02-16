@@ -1,8 +1,9 @@
 <template>
     <div class="main-view" :style="renderStyle({'background':'backgroundColor'})">
+      <div class="menu-frame" :style="renderStyle({'border-color':'borderColor'})">
       <span v-html="importFont()"></span>
   <!-- HEADER -->
-      <div class="heading">
+      <div class="heading" style="display:none;">
         <div :style="renderStyle(
           {'font-size':'eventTitleSize'},
           {'font-family':'titleFont'},
@@ -17,44 +18,110 @@
       <div class="items">
         <div class="item">
           <img :src="account.public.events[21208].items[1].photo">
-          <div class="item-title" :style="renderStyle(
-            {'font-size':'titleSize'},
-            {'font-family':'titleFont'},
-            {'color':'titleColor'})"
-          >{{account.public.events[21208].items[1].title}}</div>
-          <div class="item-description" :style="renderStyle(
-            {'font-size':'descriptionSize'},
-            {'font-family':'descriptionFont'},
-            {'color':'descriptionColor'})"
-          >{{account.public.events[21208].items[1].description}}</div>
+          <div>
+            <input 
+              id="title1"
+              disabled
+              class="item-title toggle-disable" 
+              type="text"
+              spellcheck="false"
+              :style="renderStyle(
+              {'font-size':'titleSize'},
+              {'font-family':'titleFont'},
+              {'color':'titleColor'})" 
+              v-model="account.public.events[21208].items[1].title"
+              v-on="title = account.public.events[21208].title"
+              value="title"
+            >
+          </div>
+          <div class="item-description">
+            <textarea 
+              id="description1"
+              disabled
+              class="item-title" 
+              type="text"
+              spellcheck="false"
+              :style="renderStyle(
+              {'font-size':'descriptionSize'},
+              {'font-family':'descriptionFont'},
+              {'color':'descriptionColor'})"
+              v-model="account.public.events[21208].items[1].description"
+              v-on="description = account.public.events[21208].description"
+              value="description"
+            ></textarea>
+          </div>
         </div>
   <!-- ITEM2 -->
         <div class="item">
           <img :src="account.public.events[21208].items[2].photo">
-          <div class="item-title" :style="renderStyle(
-            {'font-size':'titleSize'},
-            {'font-family':'titleFont'},
-            {'color':'titleColor'})"
-          >{{account.public.events[21208].items[2].title}}</div>
-          <div class="item-description" :style="renderStyle(
-            {'font-size':'descriptionSize'},
-            {'font-family':'descriptionFont'},
-            {'color':'descriptionColor'})"
-          >{{account.public.events[21208].items[2].description}}</div>
+          <div>
+            <input 
+              id="title2"
+              disabled
+              class="item-title toggle-disable" 
+              type="text"
+              spellcheck="false"
+              :style="renderStyle(
+              {'font-size':'titleSize'},
+              {'font-family':'titleFont'},
+              {'color':'titleColor'})" 
+              v-model="account.public.events[21208].items[2].title"
+              v-on="title = account.public.events[21208].title"
+              value="title"
+            >
+          </div>
+          <div class="item-description">
+            <textarea 
+              id="description2"
+              disabled
+              class="item-title" 
+              type="text"
+              spellcheck="false"
+              :style="renderStyle(
+              {'font-size':'descriptionSize'},
+              {'font-family':'descriptionFont'},
+              {'color':'descriptionColor'})"
+              v-model="account.public.events[21208].items[2].description"
+              v-on="description = account.public.events[21208].description"
+              value="description"
+            ></textarea>
+          </div>
         </div>
   <!-- ITEM3 -->
         <div class="item">
           <img :src="account.public.events[21208].items[3].photo">
-          <div class="item-title" :style="renderStyle(
-            {'font-size':'titleSize'},
-            {'font-family':'titleFont'},
-            {'color':'titleColor'})"
-          >{{account.public.events[21208].items[3].title}}</div>
-          <div class="item-description" :style="renderStyle(
-            {'font-size':'descriptionSize'},
-            {'font-family':'descriptionFont'},
-            {'color':'descriptionColor'})"
-          >{{account.public.events[21208].items[3].description}}</div>
+          <div>
+            <input 
+              id="title3"
+              disabled
+              class="item-title toggle-disable" 
+              type="text"
+              spellcheck="false"
+              :style="renderStyle(
+              {'font-size':'titleSize'},
+              {'font-family':'titleFont'},
+              {'color':'titleColor'})" 
+              v-model="account.public.events[21208].items[3].title"
+              v-on="title = account.public.events[21208].title"
+              value="title"
+            >
+          </div>
+          <div class="item-description">
+            <textarea 
+              id="description3"
+              disabled
+              class="item-title" 
+              type="text"
+              spellcheck="false"
+              :style="renderStyle(
+              {'font-size':'descriptionSize'},
+              {'font-family':'descriptionFont'},
+              {'color':'descriptionColor'})"
+              v-model="account.public.events[21208].items[3].description"
+              v-on="description = account.public.events[21208].description"
+              value="description"
+            ></textarea>
+          </div>
         </div>
       </div>
 
@@ -109,13 +176,13 @@
               descriptionColor,
               glass1,
               glass2,
-              glass3
+              glass3,
+              borderColor,
+              edit
             }"
           />
         </transition>
       </div>
-
-
 
       <!-- <div class="spacer"></div>
       
@@ -139,9 +206,45 @@
           }" 
         /> -->
     </div>
+    <span class="bottom-text" :style="renderStyle({'border-color':'borderColor'},{'background':'borderColor'})">{{account.public.events[21208].eventTitle}}</span>
+  </div>
 </template>
 
 <style lang="scss">
+.item-description{
+  textarea, textarea:disabled{
+    background:none !important;
+    width:500px !important;
+    border:none;
+    text-align: center;
+  }
+}
+  .bottom-text{
+    background:rgb(48, 105, 230);
+    border:solid rgb(48, 105, 230) 10px;
+    width: 600px;
+    color:white;
+    font-size: 3rem;
+    padding:10px 0px;
+    font-family: Yellowtail;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+  }
+  .menu-frame{
+    width:600px;
+    height: 800px;
+    border:solid rgb(48, 105, 230) 10px;
+    border-bottom:none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .main-view{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }
   .heading{
     padding:2rem;
   }
@@ -152,12 +255,16 @@
     flex-direction: column;
     text-align: center;
     .item{
-      padding:1rem 5rem;
+      input{
+        text-align: center;
+        width: 400px;
+      }
+      padding: 1rem 2rem;
       .item-description{
         font-size:20px;
       }
       .item-title{
-        padding: 20px;
+        padding: 10px;
       }
     }
     img{
@@ -182,9 +289,42 @@
     padding: 0rem 1rem;
   }
   input{
-    background:white;
+    background:none;
+    border: none;
     color:black;
     text-align: left;
+  }
+// IPHONE
+  @media screen and (min-device-width : 375px) 
+  and (max-device-width : 667px)  {
+    .menu-frame{
+      width:90%;
+      height: 70%;
+    }
+    .bottom-text{
+      width:90%;
+      height: auto;
+      padding:0px 0px;
+      font-size: 1.5rem;
+    }
+      .items{
+        .item{
+          padding:20px 0px;
+          input{
+            margin:auto;
+          }
+        img{
+          width:40px;
+        }
+        .item-title{
+          font-size:20px !important;
+        }
+        .item-description{
+          font-size:14px !important;
+          // transform:scale(0.6);
+        }
+      }
+    }
   }
 </style>
 
@@ -361,6 +501,23 @@ export default {
       })
     },
     toggle (type) {
+      if (type === 'edit') {
+        if (this.edit) {
+          document.getElementById('title1').disabled = true
+          document.getElementById('description1').disabled = true
+          document.getElementById('title2').disabled = true
+          document.getElementById('description2').disabled = true
+          document.getElementById('title3').disabled = true
+          document.getElementById('description3').disabled = true
+        } else {
+          document.getElementById('title1').disabled = false
+          document.getElementById('description1').disabled = false
+          document.getElementById('title2').disabled = false
+          document.getElementById('description2').disabled = false
+          document.getElementById('title3').disabled = false
+          document.getElementById('description3').disabled = false
+        }
+      }
       if (this[type]) {
         this[type] = false
       } else if (!this[type]) {
