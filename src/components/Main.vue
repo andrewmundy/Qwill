@@ -217,6 +217,7 @@
     width:500px !important;
     border:none;
     text-align: center;
+    resize: none ;
   }
 }
   .bottom-text{

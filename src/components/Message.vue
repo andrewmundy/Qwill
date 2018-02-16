@@ -59,6 +59,7 @@
             textarea{
                 width: 540px;
                 padding:1rem;
+                resize: none ;
             }
             button{
                 width:570px;
