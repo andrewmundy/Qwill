@@ -178,8 +178,9 @@
               glass2,
               glass3,
               borderColor,
-              edit
-            }"
+              edit,
+              fontInstance         
+              }"
           />
         </transition>
       </div>
@@ -206,24 +207,24 @@
           }" 
         /> -->
     </div>
-    <span class="bottom-text" :style="renderStyle({'border-color':'borderColor'},{'background':'borderColor'})">{{account.public.events[21208].eventTitle}}</span>
+    <span class="bottom-text" :style="renderStyle({'border-color':'borderColor'},{'background':'borderColor'},{'font-family':'bottomText'})">{{account.public.events[21208].eventTitle}}</span>
   </div>
 </template>
 
 <style lang="scss">
-.item-description{
-  textarea, textarea:disabled{
-    background:none !important;
-    width:500px !important;
-    border:none;
-    text-align: center;
-    resize: none ;
-  }
-}
-    input:disabled, textarea:disabled{
-      -webkit-text-fill-color:inherit;
-      opacity: 1;
+  .item-description{
+    textarea, textarea:disabled{
+      background:none !important;
+      width:500px !important;
+      border:none;
+      text-align: center;
+      resize: none ;
+      filter:opacity(1);
     }
+  }
+  input:disabled, textarea:disabled{
+    color:currentColor !important;
+  }
   .bottom-text{
     background:rgb(48, 105, 230);
     border:solid rgb(48, 105, 230) 10px;
@@ -231,7 +232,6 @@
     color:white;
     font-size: 3rem;
     padding:10px 0px;
-    font-family: Yellowtail;
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
   }
@@ -245,7 +245,7 @@
   }
   .main-view{
     display:flex;
-    // justify-content: center;
+    // justify-content: center; 
     align-items: center;
     height: 100vh;
     flex-direction: column;
@@ -404,7 +404,8 @@ export default {
       headerImage: '',
       glass1: '',
       glass2: '',
-      glass3: ''
+      glass3: '',
+      fontInstance: ''
     }
   },
   firebase: {
@@ -420,6 +421,16 @@ export default {
     this.isLogged()
   },
   methods: {
+    chooser (selected, ...args) {
+      if (this[selected]) {
+        this[selected] = false
+      } else {
+        this[selected] = true
+      }
+      args.map(function (item) {
+        this[item] = false
+      })
+    },
     createNote: function (message) {
       this.displayNote = message
       let self = this
@@ -431,7 +442,8 @@ export default {
     },
     fetchFont: function () {
       let self = this
-      let url = `https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&fields=items%2Ffamily&key=AIzaSyBfo5yIc3yb6GoSY6U0jQvXhb0ryLeGfEU`
+      let url = `https://www.googleapis.com/webfonts/v1/webfonts?sort=trending&fields=items%2Ffamily&key=AIzaSyBfo5yIc3yb6GoSY6U0jQvXhb0ryLeGfEU`
+
       fetch(url)
         .then((resp) => resp.json())
         .then(function (data) {
@@ -513,26 +525,22 @@ export default {
     },
     toggle (type) {
       if (type === 'edit') {
+        let disabledTypes = ['title1', 'description1', 'title2', 'description2', 'title3', 'description3']
         if (this.edit) {
-          document.getElementById('title1').disabled = true
-          document.getElementById('description1').disabled = true
-          document.getElementById('title2').disabled = true
-          document.getElementById('description2').disabled = true
-          document.getElementById('title3').disabled = true
-          document.getElementById('description3').disabled = true
+          disabledTypes.map(function (types) {
+            document.getElementById(types).disabled = true
+          })
         } else {
-          document.getElementById('title1').disabled = false
-          document.getElementById('description1').disabled = false
-          document.getElementById('title2').disabled = false
-          document.getElementById('description2').disabled = false
-          document.getElementById('title3').disabled = false
-          document.getElementById('description3').disabled = false
+          disabledTypes.map(function (types) {
+            document.getElementById(types).disabled = false
+          })
         }
       }
       if (this[type]) {
         this[type] = false
       } else if (!this[type]) {
         this[type] = true
+        console.log(this[type])
       }
     }
   },

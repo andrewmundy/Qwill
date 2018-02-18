@@ -12,7 +12,7 @@
         <li @click="pickFont(fontInstance, 'Fantasy')">Papyrus(dont)</li>
 
         <i style="font-size:0.5rem;">Choose a Google Font</i>
-        <li v-for="font in fonts" @click="pickFont(fontInstance, font)">
+        <li v-for="font in fonts" @click="pickFont(fontInstance, font)" v-bind:key="font">
           {{font}}
         </li>
         </ul>
@@ -94,7 +94,6 @@
     props: [
       'toggle',
       'fbInfo',
-      'fontInstance',
       'fontColor',
       'fontStyle',
       'fontImport',
@@ -102,7 +101,9 @@
       'fonts',
       'fontSort',
       'account',
-      'titleFont'
+      'titleFont',
+      'descriptionFont',
+      'fontInstance'
     ],
     data () {
       return {
@@ -120,15 +121,17 @@
         return parent.appendChild(el)
       },
       pickFont: function (rule, fontFamily) {
+        console.log(rule, fontFamily)
         let fontFamilyRule = rule
         let parsedFont = fontFamily.replace(/\b[a-z]/g, function (f) {
           return f.toUpperCase().split(' ').join('+')
         })
         this.account.public.events[21208][fontFamilyRule] = parsedFont
         this.account.public.events[21208].fontImport = fontFamily
+        this.fontInstance = rule
       }
     },
-    mounted: function () {
+    updated: function () {
     }
   }
 </script>

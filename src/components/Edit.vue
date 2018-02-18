@@ -304,13 +304,18 @@
             >
           </div>
         <!-- FONTS -->
+        <button v-on:click="fontInstance = 'titleFont'">Title Font</button>
+        <button v-on:click="fontInstance = 'descriptionFont'">Description Font</button>
+        <button v-on:click="fontInstance = 'bottomText'">Bottom Font</button>
+
+      <!-- titleFont -->
           <div class="panel-category">
             <span class="category-close">
-              Font Face
+              {{fontInstance}}
             </span>
             <fontpicker 
               class="stylepicker"
-              fontInstance="titleFont"
+              @fontInstance="fontinstance"
               v-bind="{
                 colorWindow,
                 toggle,
@@ -320,7 +325,7 @@
                 fonts,
                 fontSort,
                 account,
-                titleFont
+                fontInstance
               }"
             />
             <input 
@@ -331,7 +336,6 @@
               placeholder=""
             >
           </div>
-
         </div>
       </transition>
     </div>
@@ -435,7 +439,8 @@
         'glass2',
         'glass3',
         'borderColor',
-        'edit'
+        'edit',
+        'fontInstance'
       ],
       data: function () {
         return {
@@ -445,7 +450,10 @@
           headerColorChild: this.headerColor,
           x: 0,
           y: 0,
-          blur: 0
+          blur: 0,
+          fontButtonTitle: false,
+          fontButtonDescription: false,
+          fontButtonBottom: false
         }
       },
       methods: {
