@@ -215,7 +215,8 @@
   .item-description{
     textarea, textarea:disabled{
       background:none !important;
-      width:500px !important;
+      // width:450px !important;
+              width: 350px;
       border:none;
       text-align: center;
       resize: none ;
@@ -228,16 +229,16 @@
   .bottom-text{
     background:rgb(48, 105, 230);
     border:solid rgb(48, 105, 230) 10px;
-    width: 600px;
+    width: 450px;
     color:white;
     font-size: 3rem;
     padding:10px 0px;
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
+    width:450px;
   }
   .menu-frame{
-    width:600px;
-    height: 800px;
+    width:450px;
     border:solid rgb(48, 105, 230) 10px;
     border-bottom:none;
     border-top-left-radius: 10px;
@@ -247,7 +248,7 @@
     display:flex;
     // justify-content: center; 
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     flex-direction: column;
     padding-top: 40px;
   }
@@ -263,7 +264,7 @@
     .item{
       input{
         text-align: center;
-        width: 400px;
+                width: 350px;
       }
       padding: 1rem 2rem;
       .item-description{
@@ -274,7 +275,7 @@
       }
     }
     img{
-      width:100px;
+      width:50px;
       height: auto;
     }
   }
@@ -305,7 +306,7 @@
   and (max-device-width : 667px)  {
     .menu-frame{
       width:90%;
-      height: 70%;
+      height: auto;
     }
     .bottom-text{
       width:90%;
